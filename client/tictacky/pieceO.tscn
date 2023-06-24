@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c628bo1ekg3vs"]
+
+[ext_resource type="ArrayMesh" uid="uid://cmwe15c114s6r" path="res://tictactoe-O.obj" id="1_s8cvs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex55l"]
+albedo_color = Color(0.345098, 0.227451, 0.0588235, 1)
+
+[node name="OElement" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="opiece" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ex55l")
+mesh = ExtResource("1_s8cvs")

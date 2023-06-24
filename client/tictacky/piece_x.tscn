@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdp86yygwysbr"]
+
+[ext_resource type="ArrayMesh" uid="uid://bl4x1ua7iessy" path="res://tictactoe-X.obj" id="1_pcud1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6dmh"]
+albedo_color = Color(0.705882, 0.486275, 0.172549, 1)
+
+[node name="pieceX" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="xpiece" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("1_pcud1")
+surface_material_override/0 = SubResource("StandardMaterial3D_b6dmh")

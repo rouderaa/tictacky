@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bl4x1ua7iessy"
+path="res://.godot/imported/tictactoe-X.obj-5a3a0dd650b5e8543cfc65825ce1e76f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tictactoe-X.obj-5a3a0dd650b5e8543cfc65825ce1e76f.mesh"]
+
+source_file="res://tictactoe-X.obj"
+dest_files=["res://.godot/imported/tictactoe-X.obj-5a3a0dd650b5e8543cfc65825ce1e76f.mesh", "res://.godot/imported/tictactoe-X.obj-5a3a0dd650b5e8543cfc65825ce1e76f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=3 uid="uid://buh00wpbh483u"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_dtnmk"]
+[ext_resource type="PackedScene" uid="uid://bdp86yygwysbr" path="res://piece_x.tscn" id="1_eb17p"]
+[ext_resource type="PackedScene" uid="uid://c628bo1ekg3vs" path="res://pieceO.tscn" id="1_lub1v"]
+[ext_resource type="Texture2D" uid="uid://bmx0uexv2hrw2" path="res://laminate_floor_02_diff_4k.jpg" id="2_vbw44"]
+[ext_resource type="Script" path="res://Connection.gd" id="3_pcvg2"]
+[ext_resource type="Script" path="res://Campivot.gd" id="4_7wt2d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60a3k"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a65c6"]
+material = SubResource("StandardMaterial3D_60a3k")
+size = Vector2(1, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l1ie"]
+albedo_texture = ExtResource("2_vbw44")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ucpos"]
+material = SubResource("StandardMaterial3D_1l1ie")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3st6m"]
+size = Vector3(1, 0.101383, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7wny"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0wp5l"]
+material = SubResource("StandardMaterial3D_t7wny")
+size = Vector2(0.01, 1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_dtnmk")
+
+[node name="Line002" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0504656, -0.167)
+mesh = SubResource("PlaneMesh_a65c6")
+skeleton = NodePath("../Line001")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Board" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ucpos")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Board"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/StaticBody3D"]
+shape = SubResource("BoxShape3D_3st6m")
+
+[node name="pieceX00" parent="." instance=ExtResource("1_eb17p")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.200696, 0.100975, -0.432123)
+visible = false
+
+[node name="pieceO00" parent="." instance=ExtResource("1_lub1v")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.430201, 0.103061, -0.431946)
+visible = false
+
+[node name="Campivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, -0.999391, 0, 0.999391, 0.0348995, 0, 0, 0)
+script = ExtResource("4_7wt2d")
+
+[node name="Camera" type="Camera3D" parent="Campivot"]
+transform = Transform3D(1, 0, 0, 0, -0.508245, 0.861212, 0, -0.861212, -0.508245, 0.00227707, 1.22904, -0.679464)
+fov = 53.2
+
+[node name="Connection" type="Node3D" parent="."]
+script = ExtResource("3_pcvg2")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="StartButton" type="Button" parent="UILayer"]
+offset_right = 145.0
+offset_bottom = 52.0
+action_mode = 0
+text = "Start"
+
+[node name="LineLabel" type="Label" parent="UILayer"]
+anchors_preset = -1
+anchor_left = 0.139
+anchor_right = 0.646
+anchor_bottom = 0.08
+offset_left = -0.128021
+offset_top = 16.0
+offset_right = -0.192017
+offset_bottom = 0.159996
+
+[node name="Line001" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.051, 0.167)
+mesh = SubResource("PlaneMesh_a65c6")
+
+[node name="line003" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167, 0.052, 0)
+mesh = SubResource("PlaneMesh_0wp5l")
+
+[node name="line004" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.167, 0.0537926, 0)
+mesh = SubResource("PlaneMesh_0wp5l")
+skeleton = NodePath("../line003")
+
+[connection signal="pressed" from="UILayer/StartButton" to="." method="_on_start_button_pressed"]
+
+[editable path="pieceX00"]
+[editable path="pieceO00"]
